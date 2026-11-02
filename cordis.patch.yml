@@ -1,0 +1,4 @@
+- insert:
+    - id: ssh-gateway
+      name: dsh-ssh-gateway
+      config: {}

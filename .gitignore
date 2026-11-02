@@ -1,0 +1,31 @@
+node_modules/
+coverage/
+*.tgz
+.DS_Store
+
+# Local runtime state and generated references
+state.json
+.sdk-reference/
+.node-test-results.txt
+
+# Machine-specific development and acceptance helpers
+scripts/diagnose-session.mjs
+scripts/install-preview.json
+scripts/probe-wuzh.mjs
+scripts/reload-gateway.json
+scripts/remove-preview.json
+scripts/seed-local-profile.mjs
+scripts/verify-sidebar.mjs
+scripts/verify-wuzh.mjs
+
+# Retired 0.2 remote-UI/model-proxy prototype (not part of 0.3)
+controller.js
+guest.js
+llm-codec.js
+model-proxy.js
+tunnel.js
+tests/controller.test.js
+tests/guest.test.js
+tests/llm-codec.test.js
+tests/model-proxy.test.js
+tests/tunnel.test.js

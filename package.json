@@ -1,0 +1,74 @@
+{
+  "name": "dsh-ssh-gateway",
+  "version": "0.3.2",
+  "description": "Run DeepSeek Harness workspace file operations and non-interactive Bash on remote Linux hosts over OpenSSH.",
+  "type": "module",
+  "main": "./index.js",
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg"
+  },
+  "files": [
+    "index.js",
+    "remote-workspaces.js",
+    "remote-tools.js",
+    "sidebar-files.js",
+    "remote-executor.js",
+    "remote-helper.py",
+    "client.js",
+    "client.source.js",
+    "build.mjs",
+    "cordis.patch.yml",
+    "locale/*.json",
+    "icon.svg",
+    "README.md",
+    "README_EN.md",
+    "LICENSE",
+    "THIRD_PARTY_NOTICES.md",
+    "dsh-plugin.naming.json"
+  ],
+  "scripts": {
+    "build": "node build.mjs",
+    "check": "node --check index.js && node --check remote-workspaces.js && node --check remote-tools.js && node --check sidebar-files.js && node --check remote-executor.js && node --check client.js && node --check client.source.js && node --check scripts/probe-ssh.mjs && node --check scripts/verify-ssh.mjs && node --check scripts/verify-live-http.mjs",
+    "test": "node --test tests/*.test.js",
+    "test:python": "python -B -m unittest discover -s tests -p test_remote_helper.py -v",
+    "test:all": "npm run check && npm test && npm run test:python"
+  },
+  "engines": {
+    "node": ">=22.19.0",
+    "dsh": ">=0.2.1-rc.3"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-settings",
+        "@deepseek-ai/dsh-client-ui-sidebar",
+        "@deepseek-ai/dsh-client-ui-workspace",
+        "@deepseek-ai/dsh-client-ui-conversation"
+      ]
+    }
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jianghao0799/dsh-ssh-gateway.git"
+  },
+  "homepage": "https://github.com/jianghao0799/dsh-ssh-gateway#readme",
+  "bugs": {
+    "url": "https://github.com/jianghao0799/dsh-ssh-gateway/issues"
+  },
+  "keywords": [
+    "deepseek-harness",
+    "dsh-plugin",
+    "ssh",
+    "remote-workspace",
+    "linux"
+  ]
+}
