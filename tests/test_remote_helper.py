@@ -83,7 +83,9 @@ class RemoteHelperTests(unittest.TestCase):
         self.request('write', path='a.txt', content='session data', cwd=directory)
         self.assertTrue(os.path.isfile(os.path.join(directory, 'a.txt')))
         self.assertEqual(self.request('read', path='a.txt', cwd=directory)['lines'][0]['text'], 'session data')
-        self.assertEqual(self.request('glob', pattern='*.txt', cwd=directory)['paths'], [os.path.join(directory, 'a.txt')])
+        paths = self.request('glob', pattern='*.txt', cwd=directory)['paths']
+        self.assertEqual(len(paths), 1)
+        self.assertTrue(os.path.samefile(paths[0], os.path.join(directory, 'a.txt')))
         self.assertEqual(self.request('list', cwd=directory)['entries'][0]['name'], 'a.txt')
         self.assertEqual(self.request('grep', pattern='session', cwd=directory)['files'][0]['matches'][0]['lineNumber'], 1)
     def test_ambiguous_and_binary(self):
